@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         UpdateMove();
+        UpdateRotation();
+    }
+
+    private void UpdateRotation()
+    {
+        var rot = transform.rotation;
+        rot.y = Camera.main.transform.rotation.y;
+        transform.rotation = rot;
     }
 
     private void UpdateMove()
