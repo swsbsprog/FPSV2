@@ -7,12 +7,17 @@ public class Player : MonoBehaviour
 {
     public float speed = 5;
     public Animator animator;
+    public Rigidbody rb;
 
     void Update()
     {
-        UpdateMove();
         UpdateRotation();
         UpdateFire();
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateMove();
     }
     public GameObject bullet;
     public Transform firePos;
@@ -52,16 +57,15 @@ public class Player : MonoBehaviour
             move.x = -1;
         if (Input.GetKey(KeyCode.D)) // 오른쪽
             move.x = 1;
-
         animator.SetFloat("speed", move.magnitude);
         animator.SetFloat("moveX", move.x);
         animator.SetFloat("moveY", move.z);
 
-        // move 움직임이 있다면 런 애니메이션 해라.
-        // 움직임이 없다면 idle애니메이션 해라.
-        float forward = move.z;
-        float side = move.x;
-        move = move * speed * Time.deltaTime;
-        transform.Translate(move);
+        Vector3 localMove = move.z * transform.forward;
+        localMove += move.x * transform.right;
+        var pos = rb.position;
+        localMove = localMove * speed * Time.deltaTime;
+        pos += localMove;
+        rb.position = pos;
     }
 }
