@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     public float speed = 5;
     public Animator animator;
     public Rigidbody rb;
- 
+    private void Awake() => instance = this;
+
     void Update()
     {
         UpdateRotation();
