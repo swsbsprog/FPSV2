@@ -18,18 +18,14 @@ public class Player : MonoBehaviour
     public Transform firePos;
     private void UpdateFire()
     {
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) //같다(Input.GetKeyDown(KeyCode.Mouse0))
         {
             // 총알 발사.
             var newBullet = Instantiate(bullet);
             newBullet.transform.position = firePos.position;
-            //newBullet.transform.forward = 
-
-
-            Vector3 centerPos = new(Screen.width / 2, Screen.height / 2, 0);
+            Vector3 screenCenter = new(Screen.width / 2, Screen.height / 2, 0);
             // //카메라 위치에서 클릭한 위치로 레이를 소자.
-            Ray ray = Camera.main.ScreenPointToRay(centerPos);
+            Ray ray = Camera.main.ScreenPointToRay(screenCenter);
             Physics.Raycast(ray, out RaycastHit hit);
             if (hit.transform != null)
             {
