@@ -9,18 +9,16 @@ public class Bullet : MonoBehaviour
     public float speed = 1;
     private void Start()
     {
-        //transform
-        //transform.forward; -> 월드 방향으로 바꿔서 힘을 주자.
-        //rb.AddForce(0, 0, speed, ForceMode.Impulse);
-    }
-    private void Update()
-    {
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        //월드 방향으로 로컬로 바꿔서 힘을 주자.
+        // 월드 힘이 아니라  -> 로컬 힘을 주자.
+        var force = transform.forward * speed;
+        rb.AddForce(force, ForceMode.Impulse);
     }
 
     // 부딪힘 감지
     private void OnTriggerEnter(Collider other)
     {
         print(other);
+        //
     }
 }

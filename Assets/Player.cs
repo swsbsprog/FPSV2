@@ -8,12 +8,24 @@ public class Player : MonoBehaviour
     public float speed = 5;
     public Animator animator;
     public Rigidbody rb;
-
+ 
     void Update()
     {
         UpdateRotation();
         UpdateFire();
+        ToggleCursor();
     }
+    bool cursorLocked = true;
+    private void ToggleCursor()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+            cursorLocked = !cursorLocked;
+
+        Cursor.visible = !cursorLocked;
+        Cursor.lockState = cursorLocked 
+            ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+
 
     private void FixedUpdate()
     {
@@ -63,9 +75,9 @@ public class Player : MonoBehaviour
 
         Vector3 localMove = move.z * transform.forward;
         localMove += move.x * transform.right;
+        Vector3 worldMoveDelta = localMove * speed * Time.deltaTime;
         var pos = rb.position;
-        localMove = localMove * speed * Time.deltaTime;
-        pos += localMove;
+        pos += worldMoveDelta;
         rb.position = pos;
     }
 }
