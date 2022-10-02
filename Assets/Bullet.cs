@@ -30,7 +30,9 @@ public class Bullet : MonoBehaviour
         bulletHoleTr.Translate(0, bulletOffset, 0);
         bulletHoleTr.SetParent(hit.otherCollider.transform);
 
-        hit.otherCollider.GetComponent<Enemy>().OnDamage();
+        var enemy = hit.otherCollider.GetComponent<Enemy>();
+        if (enemy)
+            enemy.OnDamage();
 
         Destroy(gameObject);
     }
