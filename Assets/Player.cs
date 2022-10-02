@@ -6,6 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 5;
+    public Animator animator;
+
     void Update()
     {
         UpdateMove();
@@ -30,6 +32,10 @@ public class Player : MonoBehaviour
             move.x = -1;
         if (Input.GetKey(KeyCode.D)) // 오른쪽
             move.x = 1;
+
+        animator.SetFloat("speed", move.magnitude);
+        animator.SetFloat("moveX", move.x);
+        animator.SetFloat("moveY", move.z);
 
         // move 움직임이 있다면 런 애니메이션 해라.
         // 움직임이 없다면 idle애니메이션 해라.
