@@ -24,10 +24,13 @@ public class Bullet : MonoBehaviour
         var newGo = Instantiate(bulletHole);
         var hit = collision.contacts[0];
         newGo.transform.position = hit.point;
-        var bulletTr = newGo.transform;
-        bulletTr.rotation = Quaternion.FromToRotation(bulletTr.up, hit.normal)
-            * bulletTr.rotation;
-        bulletTr.Translate(0, bulletOffset, 0);
+        var bulletHoleTr = newGo.transform;
+        bulletHoleTr.rotation = Quaternion.FromToRotation(bulletHoleTr.up, hit.normal)
+            * bulletHoleTr.rotation;
+        bulletHoleTr.Translate(0, bulletOffset, 0);
+        bulletHoleTr.SetParent(hit.otherCollider.transform);
+
+        hit.otherCollider.GetComponent<Enemy>().OnDamage();
 
         Destroy(gameObject);
     }

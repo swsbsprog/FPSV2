@@ -398,6 +398,8 @@ MonoBehaviour:
   detectionRange: 10
   bullet: {fileID: 1086664671600574, guid: 904d101f9cca16344abb5eef6e7585b4, type: 3}
   fireTr: {fileID: 723364119629133395}
+  animator: {fileID: 8276172072156185366}
+  hp: 1
 --- !u!1 &8276172072148906156
 GameObject:
   m_ObjectHideFlags: 0
