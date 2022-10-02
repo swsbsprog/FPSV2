@@ -22,10 +22,9 @@ public class Player : MonoBehaviour
             cursorLocked = !cursorLocked;
 
         Cursor.visible = !cursorLocked;
-        Cursor.lockState = cursorLocked 
+        Cursor.lockState = cursorLocked
             ? CursorLockMode.Locked : CursorLockMode.None;
     }
-
 
     private void FixedUpdate()
     {

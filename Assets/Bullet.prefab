@@ -189,6 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 54704279786675872}
   speed: 5
+  bulletHole: {fileID: 360108473435763680, guid: 97192cb00563a114aaef05bc1fa59ecb, type: 3}
+  bulletOffset: 0.001
 --- !u!1 &1231345400216816
 GameObject:
   m_ObjectHideFlags: 0
