@@ -4,7 +4,8 @@ public class ActivateOnKeypress : MonoBehaviour
 {
     public KeyCode ActivationKey = KeyCode.LeftControl;
     public int PriorityBoostAmount = 10;
-    public GameObject Reticle;
+    public GameObject ReticleAim;
+    public GameObject ReticleNormal;
 
     Cinemachine.CinemachineVirtualCameraBase vcam;
     bool boosted = false;
@@ -32,7 +33,10 @@ public class ActivateOnKeypress : MonoBehaviour
                 boosted = false;
             }
         }
-        if (Reticle != null)
-            Reticle.SetActive(boosted);
+        if (ReticleAim != null)
+        {
+            ReticleAim.SetActive(boosted);
+            ReticleNormal.SetActive(!boosted);
+        }
     }
 }
